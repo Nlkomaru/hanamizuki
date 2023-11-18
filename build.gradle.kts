@@ -33,12 +33,12 @@ dependencies {
     val paperVersion = "1.20.2-R0.1-SNAPSHOT"
     val mccoroutineVersion = "2.13.0"
     val lampVersion = "3.1.7"
-    val koinVersion = "3.1.2"
+    val koinVersion = "3.5.0"
     val coroutineVersion = "1.7.3"
-    val serializationVersion = "1.5.1"
+    val serializationVersion = "1.6.1"
     val junitVersion = "5.10.1"
     val mockkVersion = "1.13.8"
-    val mockBukkitVersion = "3.9.0"
+    val mockBukkitVersion = "3.45.0"
 
 
     compileOnly("io.papermc.paper:paper-api:$paperVersion")
