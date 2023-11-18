@@ -1,4 +1,4 @@
-package dev.nikomaru.template.utils.coroutines
+package dev.nikomaru.hanamizuki.utils.coroutines
 
 import kotlinx.coroutines.CoroutineDispatcher
 import org.bukkit.Bukkit

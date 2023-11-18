@@ -1,20 +1,30 @@
-package dev.nikomaru.template
+package dev.nikomaru.hanamizuki
 
-import dev.nikomaru.template.commands.HelpCommand
+import dev.nikomaru.hanamizuki.commands.HelpCommand
+import dev.nikomaru.hanamizuki.commands.SendCommand
 import org.bukkit.plugin.java.JavaPlugin
+import org.koin.core.context.GlobalContext
+import org.koin.core.context.GlobalContext.startKoin
+import org.koin.dsl.module
 import revxrsal.commands.bukkit.BukkitCommandHandler
 import revxrsal.commands.ktx.supportSuspendFunctions
 
-class Template : JavaPlugin() {
+open class Hanamizuki : JavaPlugin() {
 
-    companion object {
-        lateinit var plugin: Template
-            private set
-    }
     override fun onEnable() {
         // Plugin startup logic
-        plugin = this
+        setupKoin()
         setCommand()
+    }
+
+    private fun setupKoin() {
+        val appModule = module {
+            single<JavaPlugin> { this@Hanamizuki }
+        }
+
+        GlobalContext.getOrNull() ?:startKoin {
+            modules(appModule)
+        }
     }
 
     override fun onDisable() {
@@ -28,7 +38,7 @@ class Template : JavaPlugin() {
         handler.setFlagPrefix("--")
         handler.supportSuspendFunctions()
 
-        handler.setHelpWriter { command, actor ->
+        handler.setHelpWriter { command, _ ->
             java.lang.String.format(
                 """
                 <color:yellow>コマンド: <color:gray>%s
@@ -43,6 +53,7 @@ class Template : JavaPlugin() {
         }
 
         with(handler) {
+            register(SendCommand())
             register(HelpCommand())
         }
     }
