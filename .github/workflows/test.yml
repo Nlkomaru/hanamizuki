@@ -16,9 +16,9 @@ jobs:
           cache: 'gradle'
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
-      - name: Build with Gradle
+      - name: Test with Gradle
         run: ./gradlew test
-      - name: Upload test results
+      - name: Publish test results
         uses: mikepenz/action-junit-report@v4
         if: success() || failure()
         with:
