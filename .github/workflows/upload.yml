@@ -30,4 +30,6 @@ jobs:
           asset_path: ./build/libs/Hanamizuki-1.0-SNAPSHOT-all.jar
           asset_name: Hanamizuki_${{ github.event.release.tag_name }}.jar
           asset_content_type: application/jar
+          token: ${{ secrets.GITHUB_TOKEN }}
+
 
