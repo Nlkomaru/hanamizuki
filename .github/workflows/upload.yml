@@ -4,16 +4,8 @@ on:
   release:
     types: [ published ]
 
-permissions:
-  contents: read
-  packages: write
-
-
 jobs:
   build:
-    permissions:
-      contents: write
-      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:
@@ -39,4 +31,5 @@ jobs:
           asset_name: Hanamizuki_${{ github.event.release.tag_name }}.jar
           asset_content_type: application/jar
           token: ${{ secrets.GITHUB_TOKEN }}
+
 
