@@ -14,7 +14,6 @@ import org.koin.test.inject
 @ExtendWith(HanamizukiTest::class)
 class HelpCommandTest : KoinTest{
     val server : ServerMock by inject()
-    val plugin : Hanamizuki by inject()
 
     @Test
     @DisplayName("コマンドテスト: hanamizuki help")
