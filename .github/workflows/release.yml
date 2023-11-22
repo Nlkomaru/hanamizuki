@@ -1,4 +1,4 @@
-name: Gradle Build Action
+name: Release Drafter
 
 on:
   push:
@@ -42,21 +42,28 @@ jobs:
       - uses: release-drafter/release-drafter@v5
         id: release-drafter
         with:
-          publish: true
-          footer: <table><tr><th><th>Tests</th><th>Passed ✅</th><th>Skipped ⏭️</th><th>Failed ❌</th></tr><tr><td>JUnit Test Report</td><td>${{ steps.publish-test-results.outputs.total }} ran</td><td>${{ steps.publish-test-results.outputs.passed }} passed</td><td>${{ steps.publish-test-results.outputs.skipped }} skipped</td><td>${{ steps.publish-test-results.outputs.failed }} failed</td></tr></table>
+          publish: false
+          footer: |
+            # Check summary
+            
+            <table>
+              <tr>
+              <th>
+                <th>Tests 💯</th>
+                <th>Passed ✅</th>
+                <th>Skipped ⏭️</th>
+                <th>Failed ❌</th>
+              </tr>
+              <tr>
+                <td>JUnit Test Report</td>
+                <td>${{ steps.publish-test-results.outputs.total }} ran</td>
+                <td>${{ steps.publish-test-results.outputs.passed }} passed</td>
+                <td>${{ steps.publish-test-results.outputs.skipped }} skipped</td>
+                <td>${{ steps.publish-test-results.outputs.failed }} failed</td>
+              </tr>
+            </table>
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build with Gradle
         run: ./gradlew build
-
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.release-drafter.outputs.upload_url }}
-          asset_path: ./build/libs/Hanamizuki-1.0-SNAPSHOT-all.jar
-          asset_name: Hanamizuki_${{ steps.release-drafter.outputs.tag_name }}.jar
-          asset_content_type: application/jar
