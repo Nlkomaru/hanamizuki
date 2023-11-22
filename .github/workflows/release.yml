@@ -44,7 +44,7 @@ jobs:
         with:
           publish: false
           footer: |
-            # Check summary
+            ## Check summary
             
             <table>
               <tr>
@@ -64,6 +64,3 @@ jobs:
             </table>
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build with Gradle
-        run: ./gradlew build
