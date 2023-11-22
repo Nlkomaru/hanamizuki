@@ -20,7 +20,6 @@ class HelpCommandTest : KoinTest{
     @DisplayName("コマンドテスト: hanamizuki help")
     fun sendHelp(){
         val player = server.addPlayer()
-        val result = player.performCommand("hanamizuki help")
-        assert(result)
+        assert(player.performCommand("hanamizuki help"))
     }
 }
