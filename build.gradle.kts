@@ -79,25 +79,22 @@ tasks {
     build {
         dependsOn(shadowJar)
     }
-}
-tasks.withType<JavaCompile>().configureEach {
-    options.encoding = "UTF-8"
-}
-
-tasks {
     runServer {
         minecraftVersion("1.20.2")
     }
-}
-
-tasks.test {
-    useJUnitPlatform()
-    testLogging {
-        showStandardStreams = true
-        events("passed", "skipped", "failed")
-        exceptionFormat = TestExceptionFormat.FULL
+    withType<JavaCompile>().configureEach {
+        options.encoding = "UTF-8"
+    }
+    test {
+        useJUnitPlatform()
+        testLogging {
+            showStandardStreams = true
+            events("passed", "skipped", "failed")
+            exceptionFormat = TestExceptionFormat.FULL
+        }
     }
 }
+
 
 bukkit {
     name = "Hanamizuki"
