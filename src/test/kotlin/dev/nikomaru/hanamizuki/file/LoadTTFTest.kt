@@ -34,7 +34,7 @@ class LoadTTFTest : KoinTest {
     @Test
     fun loadEmojiFont() {
         val font = LoadTTF.loadEmojiFont()
-        assertEquals("Noto Color Emoji", font.name)
+        assertEquals("Noto Emoji Regular", font.name)
     }
 
     @TempDir
@@ -65,8 +65,8 @@ class LoadTTFTest : KoinTest {
 
         val loadImage = ImageIO.read(file)
 
-        assertEquals(loadImage.width, 600)
-        assertEquals(loadImage.height, 100)
+        assertEquals(600, loadImage.width)
+        assertEquals(100, loadImage.height)
 
     }
 
