@@ -2,6 +2,7 @@ package dev.nikomaru.hanamizuki
 
 import dev.nikomaru.hanamizuki.commands.HelpCommand
 import dev.nikomaru.hanamizuki.commands.SendCommand
+import dev.nikomaru.hanamizuki.file.LoadTTF
 import org.bukkit.plugin.java.JavaPlugin
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.GlobalContext.startKoin
@@ -14,12 +15,13 @@ open class Hanamizuki : JavaPlugin() {
     override fun onEnable() {
         // Plugin startup logic
         setupKoin()
+        LoadTTF.loadFont()
         setCommand()
     }
 
     private fun setupKoin() {
         val appModule = module {
-            single<JavaPlugin> { this@Hanamizuki }
+            single<Hanamizuki> { this@Hanamizuki }
         }
 
         GlobalContext.getOrNull() ?:startKoin {

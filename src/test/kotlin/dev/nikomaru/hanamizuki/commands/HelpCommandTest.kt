@@ -1,12 +1,10 @@
 package dev.nikomaru.hanamizuki.commands
 
 import be.seeseemelk.mockbukkit.ServerMock
-import dev.nikomaru.hanamizuki.Hanamizuki
 import dev.nikomaru.hanamizuki.HanamizukiTest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.koin.java.KoinJavaComponent.inject
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
