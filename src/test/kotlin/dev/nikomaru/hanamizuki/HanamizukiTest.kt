@@ -13,7 +13,7 @@ import org.koin.dsl.module
 import revxrsal.commands.bukkit.BukkitCommandHandler
 import revxrsal.commands.ktx.supportSuspendFunctions
 
-open class HanamizukiTest : BeforeEachCallback, AfterAllCallback {
+open class HanamizukiTest : BeforeEachCallback, AfterEachCallback {
 
     lateinit var server: ServerMock
     lateinit var plugin: Hanamizuki
@@ -24,8 +24,7 @@ open class HanamizukiTest : BeforeEachCallback, AfterAllCallback {
         setupKoin()
     }
 
-    override fun afterAll(context: ExtensionContext) {
-        println("tearDown")
+    override fun afterEach(context: ExtensionContext) {
         MockBukkit.unmock()
     }
 
